@@ -1,0 +1,5 @@
+# Line endings normalized to LF in the repository on every platform
+* text=auto
+*.cpp text eol=lf
+*.h text eol=lf
+*.py text eol=lf

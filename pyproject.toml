@@ -1,0 +1,98 @@
+[build-system]
+requires = ["scikit-build-core>=0.10", "pybind11>=2.13"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "pymineflow"
+version = "0.1.0"
+description = "Fast ultimate pit (maximum closure) for open-pit mining in Python, powered by the MineFlow pseudoflow solver"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Paul Alejandro Espinoza Tenecora", email = "mathgeomine@gmail.com" }]
+requires-python = ">=3.10,<3.15"
+dependencies = ["numpy>=1.23", "pandas>=1.5", "pyarrow>=12", "pyvista>=0.44", "matplotlib>=3.5", "pillow>=9.1"]
+keywords = ["mining", "open pit", "ultimate pit", "pit optimization", "maximum closure", "pseudoflow", "max-flow",
+            "nested pits", "NPV"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
+  "Operating System :: MacOS",
+  "Programming Language :: C++",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+polars = ["polars>=1.0"]  # an alternative reader engine
+test = ["pytest>=7", "scipy>=1.9", "polars>=1.0", "ipykernel>=6", "jupyter_client>=7"]
+dev = ["pymineflow[test]", "ruff>=0.6", "mypy>=1.10", "build>=1.0"]
+
+[project.scripts]
+pymineflow = "pymineflow.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/MathGeoMineAILab/PyMineFlow"
+Repository = "https://github.com/MathGeoMineAILab/PyMineFlow"
+Issues = "https://github.com/MathGeoMineAILab/PyMineFlow/issues"
+Changelog = "https://github.com/MathGeoMineAILab/PyMineFlow/blob/main/CHANGELOG.md"
+Upstream = "https://github.com/MineFlowCSM/MineFlow"
+
+[tool.scikit-build]
+minimum-version = "0.10"
+cmake.build-type = "Release"
+wheel.packages = ["src/pymineflow"]
+wheel.exclude = ["pymineflow/*.cpp"]
+wheel.license-files = ["LICENSE", "NOTICE", "third_party/mineflow/LICENSE"]  # MIT: keep MineFlow's notice
+sdist.include = ["third_party/mineflow/*"]
+sdist.exclude = [".github", "build", "dist", "assets", "benchmarks/data", "*.csv", "*.parquet"]
+
+[tool.cibuildwheel]
+build = "cp310-* cp311-* cp312-* cp313-* cp314-*"
+skip = "*-musllinux_* *-win32 *_i686 *_aarch64 *_ppc64le *_s390x"
+test-requires = ["pytest", "scipy", "polars", "ipykernel", "jupyter_client"]
+test-command = "pytest {project}/tests -q"
+
+[tool.cibuildwheel.macos]
+environment = { MACOSX_DEPLOYMENT_TARGET = "10.15" }
+
+[[tool.cibuildwheel.overrides]]
+select = "*-macosx_arm64"
+environment = { MACOSX_DEPLOYMENT_TARGET = "11.0" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "PIE", "RET", "PT", "NPY", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pymineflow"]
+known-local-folder = ["_oracle"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src/pymineflow"]
+disallow_untyped_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+
+[[tool.mypy.overrides]]
+module = ["pandas", "pandas.*", "pyarrow", "pyarrow.*", "polars", "polars.*", "pyvista", "pyvista.*", "PIL", "PIL.*"]
+ignore_missing_imports = true

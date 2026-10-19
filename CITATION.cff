@@ -1,0 +1,73 @@
+cff-version: 1.2.0
+message: "If you use PyMineFlow, please cite it, and cite MineFlow (the solver it wraps) and the methods you use (see the references)."
+type: software
+title: "PyMineFlow"
+abstract: "Ultimate pits, nested pits, block economics, bench discounting and pit-by-pit NPV for open-pit mining in Python, powered by the MineFlow pseudoflow solver."
+version: 0.1.0
+license: MIT
+authors:
+  - family-names: "Espinoza Tenecora"
+    given-names: "Paul Alejandro"
+    email: "mathgeomine@gmail.com"
+repository-code: "https://github.com/MathGeoMineAILab/PyMineFlow"
+keywords:
+  - mining
+  - ultimate pit
+  - maximum closure
+  - pseudoflow
+  - nested pits
+  - NPV
+references:
+  - type: article
+    title: "An Open-Source Program for Efficiently Computing Ultimate Pit Limits: MineFlow"
+    authors:
+      - family-names: "Deutsch"
+        given-names: "Matthew"
+      - family-names: "Dağdelen"
+        given-names: "Kadri"
+      - family-names: "Johnson"
+        given-names: "Thys"
+    journal: "Natural Resources Research"
+    year: 2022
+    doi: "10.1007/s11053-022-10035-w"
+  - type: article
+    title: "The pseudoflow algorithm: a new algorithm for the maximum-flow problem"
+    authors:
+      - family-names: "Hochbaum"
+        given-names: "Dorit S."
+    journal: "Operations Research"
+    volume: 56
+    issue: 4
+    start: 992
+    end: 1009
+    year: 2008
+    doi: "10.1287/opre.1070.0447"
+  - type: article
+    title: "Maximal closure of a graph and applications to combinatorial problems"
+    authors:
+      - family-names: "Picard"
+        given-names: "Jean-Claude"
+    journal: "Management Science"
+    volume: 22
+    issue: 11
+    start: 1268
+    end: 1272
+    year: 1976
+    doi: "10.1287/mnsc.22.11.1268"
+  - type: article
+    title: "MineLib: a library of open pit mining problems"
+    authors:
+      - family-names: "Espinoza"
+        given-names: "Daniel"
+      - family-names: "Goycoolea"
+        given-names: "Marcos"
+      - family-names: "Moreno"
+        given-names: "Eduardo"
+      - family-names: "Newman"
+        given-names: "Alexandra"
+    journal: "Annals of Operations Research"
+    volume: 206
+    start: 93
+    end: 114
+    year: 2013
+    doi: "10.1007/s10479-012-1258-3"

@@ -1,0 +1,42 @@
+# Build artifacts
+build/
+dist/
+wheelhouse/
+*.egg-info/
+__pycache__/
+*.so
+*.pyd
+*.exe
+
+# Tool caches and environments
+.venv*/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+.vscode/
+
+# Data files (never published)
+*.csv
+*.parquet
+*.feather
+*.dat
+*.npy
+*.blocks
+*.prec
+*.upit
+*.cpit
+*.pcpsp
+*.sol
+*.zip
+
+# Benchmark downloads
+benchmarks/data/
+
+# Profiles and local outputs
+*.out
+*.prof
+
+# Example downloads and outputs
+examples/minelib/data/
+examples/**/results/

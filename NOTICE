@@ -1,0 +1,6 @@
+PyMineFlow
+Copyright (c) 2026 Paul Alejandro Espinoza Tenecora
+
+This package includes MineFlow (third_party/mineflow), MIT licensed,
+Copyright (c) 2022 Matthew Deutsch. See third_party/mineflow/LICENSE for its license
+and PATCHES.md for the change made to it.
